@@ -10,6 +10,8 @@ namespace First_lesson
     internal class Program
     {
         static int waitTime = 1000;
+        private static Random _random = new Random();
+
 
         static async Task Main(string[] args)
         {
@@ -43,12 +45,20 @@ namespace First_lesson
             Console.Clear();
 
         }
+        private static ConsoleColor GetRandomConsoleColor()
+        {
+            var consoleColors = Enum.GetValues(typeof(ConsoleColor));
+            return (ConsoleColor)consoleColors.GetValue(_random.Next(consoleColors.Length));
+        }
         private static void writeDelay(string text) 
         {
+            Console.BackgroundColor = GetRandomConsoleColor();
             foreach (char c in text)
             {
+                
                 Console.Write(c);
                 Thread.Sleep(100);
+                
             }
         }
        
